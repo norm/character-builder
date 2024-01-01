@@ -2,6 +2,7 @@
 
 overall_level=0
 declare -A class_level
+declare -a proficiency_bonus=(0 +2 +2 +2 +2 +3 +3 +3 +3 +4 +4 +4 +4 +5 +5 +5 +5 +6 +6 +6 +6 +6)
 
 while [ -n "${2}" ]; do
     count="$1"
@@ -25,6 +26,9 @@ while [ -n "${2}" ]; do
             echo -n "${f^} ${class_level[$f]} "
         done
         echo ''
+        echo ''
+
+        echo "Proficiency Bonus = ${proficiency_bonus[$overall_level]}"
         echo ''
 
         found=0
