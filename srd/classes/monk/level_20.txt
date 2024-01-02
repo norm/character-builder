@@ -1,0 +1,9 @@
+Hit Points = D8
+Martial Arts die = 10
+Ki points = 20
+Unarmored Movement bonus = +30 feet
+
+### Perfect Self
+
+When you roll for Initiative and have no Ki points remaining,
+you regain 4 Ki points.

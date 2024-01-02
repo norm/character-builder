@@ -1,0 +1,6 @@
+### Dark One's Own Luck
+
+Once per Long Rest, you can call on your patron to alter fate in your favor.
+When you make an ability check or saving throw, you can use this feature to
+add 1D10 to your roll after seeing the initial roll but before any effects
+occur.

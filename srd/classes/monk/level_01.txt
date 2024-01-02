@@ -1,0 +1,29 @@
+Hit Points = D8
+Martial Arts die = D4
+
+### Unarmored Defense
+
+While you are wearing no armor and not wielding a shield, your AC equals
+10 plus your Dexterity modifier plus your Wisdom modifier.
+
+### Martial Arts
+
+Your practice of martial arts gives you mastery of combat styles that use
+unarmed strikes and Monk weapons (which are shortswords and simple melee
+weapons that don't have the Heavy or Two-Handed property).
+
+You gain the following benfits while you are unarmed or wielding only
+Monk weapons and you aren't wearing Armor or wielding a Shield:
+
+    Martial Arts die
+        You can roll one Martial Arts die in place of the normal damage of
+        your unarmed strike or Monk weapon. This die increases at future Monk
+        levels.
+
+    Dexterous Attack
+        You can use Dexterity instead of Strength for the attack and damage
+        rolls of your unarmed strikes and Monk weapons.
+
+    Bonus Attack
+        When you use the Attack Action with an unarmed strike or a Monk weapon
+        on your turn, you can make one unarmed strike as a bonus action.

@@ -1,0 +1,10 @@
+Hit Dice = D8
+Eldritch Invocations = 7
+Pact Magic Slots = 5th level [ ][ ][ ]
+Spells Known = 13
+Cantrips Known = 4
+
+### Ability Score Improvement
+
+You can increase an ability score of your choice by 2, or two scores by
+1. You cannot increase a score above 20 with this feature.

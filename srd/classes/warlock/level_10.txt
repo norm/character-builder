@@ -1,0 +1,5 @@
+Hit Dice = D8
+Eldritch Invocations = 5
+Pact Magic Slots = 5th level [ ][ ]
+Spells Known = 10
+Cantrips Known = 4

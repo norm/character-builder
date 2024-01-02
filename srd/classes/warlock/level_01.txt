@@ -1,0 +1,41 @@
+Hit Dice = D8
+Pact Magic Slots = 1st level [ ]
+Spells Known = 3
+Cantrips Known = 2
+
+### Otherworldly Patron
+
+You have struck a bargain with an otherworldly being of your choice, 
+the Archfey, the Fiend, or the Great Old One.
+
+### Pact Magic
+
+Your arcane research and the magic bestowed on you by your patron have given
+you facility with spells.
+
+    Cantrips
+        You know two cantrips of your choice from the Warlock spell list.
+
+    Spell Slots
+        You gain spell slots, all of which are the same level which increases
+        as you gain Warlock levels. To cast one of your Warlock spells of
+        1st level or higher, you must expend a spell slot. You regain all
+        Warlock spell slots when you finish a Short or Long Rest.
+
+    Spells Known
+        You choose spells from the Warlock spell list. A spell you choose must
+        be of a level equal or lower than the Warlock spell slots available.
+        When you gain a Warlock level, you can choose one Warlock spell you
+        know and replace it with another from the Warlock spell list, which
+        can be a higher level than the replaced spell but still no higher than
+        that of your Warlock spell slots.
+
+    Spellcasting
+        Charisma is your spellcasting ability for your Warlock spells.
+        You can use an arcane focus as a spellcasting focus for your
+        Warlock spells.
+
+          * Your spell save DC is 8 plus your Proficiency Bonus plus
+            your Charisma modifier
+          * Your spell attack modifier is your Proficiency Bonus plus
+            your Charisma modifier

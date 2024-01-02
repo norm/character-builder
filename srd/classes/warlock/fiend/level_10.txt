@@ -1,0 +1,5 @@
+### Fiendish Resistance
+
+You can choose one damage type when you finish a Short or Long Rest. You gain
+resistance to that damage type until you choose a different one with this
+feature. Damage from magical or silvered weapons ignores this resistance.

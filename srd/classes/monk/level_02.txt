@@ -1,0 +1,34 @@
+Hit Points = D8
+Martial Arts die = D4
+Ki points = 2
+Unarmored Movement bonus = +10 feet
+
+### Ki
+
+Your training allows oyu to harness the mystic energy of Ki. Your access to
+this energy is represented by a number of Ki points equal to your Monk level.
+You regain spent Ki when you finish a Short or Long Rest, and have spent
+at least 30 minutes of the Rest meditating.
+
+If any Ki powered feature requires your target to make a saving throw, it is
+calculated as 8 plus your Proficiency Bonus plus your Wisdom modifier.
+
+You can spend these points to fuel various Ki features. You start knowing
+three such features:
+
+    Flurry of Blows
+        Immediately after you take the Attack action on your turn, you can
+        spent 1 Ki to make two unarmed strikes as a bonus action.
+
+    Patient Defense
+        You can spend 1 Ki to take the Dodge action as a bonus action
+        on your turn.
+
+    Step of the Wind
+        You can spend 1 Ki to take the Disengage or Dash action as a bonus
+        action on your turn, and your jump distance is doubled for the turn.
+
+
+### Unarmored Movement
+
+Your speed increases while you are not wearing Armor or wielding a Shield.

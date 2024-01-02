@@ -1,0 +1,13 @@
+Hit Points = D8
+Martial Arts die = D10
+Ki points = 18
+Unarmored Movement bonus = +30 feet
+
+### Empty Body
+
+You can use your action to spend 4 Ki to become invisible for 1 minute. During
+that time, you also have resistance to all damage but force damage.
+
+Additionally, you can spend 8 Ki to cast Astral Projection without needing
+material components. When you do so, you can't take any other creatures with
+you.

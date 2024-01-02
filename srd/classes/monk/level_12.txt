@@ -1,0 +1,9 @@
+Hit Points = D8
+Martial Arts die = D8
+Ki points = 12
+Unarmored Movement bonus = +20 feet
+
+### Ability Score Improvement
+
+You can increase an ability score of your choice by 2, or two scores by
+1. You cannot increase a score above 20 with this feature.

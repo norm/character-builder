@@ -1,0 +1,10 @@
+Hit Points = D8
+Martial Arts die = D8
+Ki points = 13
+Unarmored Movement bonus = +20 feet
+
+### Tongue of the Sun and Moon
+
+You learn to touch the ki of other minds so that you understand all spoken
+languages. Moreover, any creature that can understand a language can
+understand what you say.

@@ -1,0 +1,4 @@
+Hit Points = D8
+Martial Arts die = D10
+Ki points = 17
+Unarmored Movement bonus = +25 feet

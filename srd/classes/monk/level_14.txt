@@ -1,0 +1,10 @@
+Hit Points = D8
+Martial Arts die = D8
+Ki points = 14
+Unarmored Movement bonus = +25 feet
+
+### Diamond Soul
+
+Your mastery of ki grants you proficiency in all saving throws. When you
+make a saving throw and fail, you can spend 1 Ki to reroll it and take
+the second result.

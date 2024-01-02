@@ -1,0 +1,9 @@
+Hit Points = D8
+Martial Arts die = D6
+Ki points = 10
+Unarmored Movement bonus = +20 feet
+
+### Purity of Body
+
+Your mastery of the ki flowing through you makes you immune to disease and
+poison.

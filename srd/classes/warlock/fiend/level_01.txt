@@ -1,0 +1,16 @@
+### Expanded Spell List
+
+The Fiend lets you choose from an expanded list when you learn new Warlock
+spells. For you, the Warlock spell list includes the following:
+
+    1st level       Burning Hands, Command
+    2nd level       Blindness/Deafness, Scorching Ray
+    3rd level       Fireball, Stinking Cloud
+    4th level       Fire Shield, Wall of Fire
+    5th level       Flame Strike, Hallow
+
+### Dark One's Blessing
+
+When you reduce a hostile creature to 0 hit points, you gain temporary
+hit points equal to your Charisma modifier plus your Warlock level
+(minimum of 1).

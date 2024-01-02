@@ -1,0 +1,9 @@
+Hit Points = D8
+Martial Arts die = D6
+Ki points = 6
+Unarmored Movement bonus = +15 feet
+
+### Ki-Empowered Strikes
+
+Your unarmed strikes count as magical for the purpose of overcoming resistance
+and immunity to nonmagical attacks and damage.

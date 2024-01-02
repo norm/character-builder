@@ -1,0 +1,4 @@
+### Wholeness of Body
+
+You gain the ability to heal yourself. Once per Long Rest you can, as an
+action, regain hit points equal to three times your Monk level.

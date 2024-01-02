@@ -1,0 +1,16 @@
+Hit Dice = D8
+Eldritch Invocations = 2
+Pact Magic Slots = 1st level [ ][ ]
+Spells Known = 3
+Cantrips Known = 2
+
+### Eldritch Invocations
+
+In your study of occult lore, you have unearthed eldritch invocations,
+fragments of forbidden knowledge that imbue you with an abiding magical
+ability.
+
+You gain two eldritch invocations of your choice, and more at later Warlock
+levels. Additionally, when you gain a Warlock level, you can choose one of the
+invocations you know and replace it with another invocation you can learn at
+that level.

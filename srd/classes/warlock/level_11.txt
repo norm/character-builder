@@ -1,0 +1,11 @@
+Hit Dice = D8
+Eldritch Invocations = 5
+Pact Magic Slots = 5th level [ ][ ][ ]
+Spells Known = 11
+Cantrips Known = 4
+
+### Mystic Arcanum
+
+Your patron bestows upon you a magical secret called an arcanum. Choose one
+6th level spell from the Warlock spell list as an arcanum spell. You can cast
+each arcanum spell once without expending a spell slot per Long Rest.

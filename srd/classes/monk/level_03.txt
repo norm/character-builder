@@ -1,0 +1,16 @@
+Hit Points = D8
+Martial Arts die = D4
+Ki points = 3
+Unarmored Movement bonus = +10 feet
+
+### Deflect Missiles
+
+You can use your reaction to deflect or catch the missile when you are hit
+by a ranged weapon attack, reducing the damage by 1D10 plus your Dexterity
+modifier plus your Monk level.
+
+If the damage is reduced to 0, you can catch the missile if it is small
+enough for you to hold in one hand, and you have a hand free. You can then
+spend 1 Ki to make a ranged attack with the missile as part of the same
+reaction. You make this attack with proficiency, and the missile counts as
+a Monk weapon with a normal range of 20 feet and a long range of 60 feet.

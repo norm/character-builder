@@ -1,0 +1,21 @@
+Hit Points = D8
+Martial Arts die = D6
+Ki points = 5
+Unarmored Movement bonus = +10 feet
+
+### Slow Fall
+
+You can use your reaction when you fall to reduce any falling damage you
+take by an amount equal to five times your Monk level.
+
+### Extra Attack
+
+You can attack twice instead of once whenever you take the Attack action
+on your turn.
+
+### Stunning Strike
+
+You can interfere with the flow of ki in an opponent's body. When you hit
+another create with a melee weapon attack, you can spend 1 Ki to attempt
+a stunning strike. The target must succeed on a Constitution saving throw
+or be Stunned until the end of your next turn.
