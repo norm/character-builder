@@ -21,6 +21,32 @@ bash create.sh 20 cleric/order
 ```
 
 
+## Requirements
+
+* ensure that running `bash --version` in your shell reports at least
+  version 4.0, or you'll need to find a more modern bash (looking at you,
+  macOS).
+* install `bats-core` (at least v1.5) if you want to run/edit/add tests
+
+
+## Populating a new class
+
+Create `level_01.txt` through `level_20.txt`.
+
+
+### Populating subclass
+
+There is no need to create level files when the subclass has no changes at
+that level, with the exception that each subclass must have a `level_01.txt`
+file, even if it is empty.
+
+
+## Running tests
+
+Either `make test` to run all tests, or `bats tests/___.sh` to run one (or
+more) individual test files.
+
+
 ## Licence
 
 This repository is MIT licenced at the top to indicate the code and

@@ -2,7 +2,10 @@
 
 overall_level=0
 declare -A class_level
+declare -A subclass_specified
+declare -A subclass_seen
 declare -a proficiency_bonus=(0 +2 +2 +2 +2 +3 +3 +3 +3 +4 +4 +4 +4 +5 +5 +5 +5 +6 +6 +6 +6 +6)
+declare -a sources=(srd)
 
 while [ -n "${2}" ]; do
     count="$1"
@@ -12,6 +15,13 @@ while [ -n "${2}" ]; do
 
     full_class="$class"
     base_class="$(echo "$class" | cut -d/ -f1)"
+    subclass="$(echo "$class" | cut -d/ -f2)"
+
+    if [ "$base_class" = "$subclass" ]; then
+        >&2 echo "** no subclass specified for class \"${base_class}\""
+    else
+        subclass_specified[$full_class]=1
+    fi
 
     while [ $count -gt 0 ]; do
         let overall_level++
@@ -31,23 +41,35 @@ while [ -n "${2}" ]; do
         echo "Proficiency Bonus = ${proficiency_bonus[$overall_level]}"
         echo ''
 
-        found=0
-        while [ true ]; do
-            file=$(printf "$class/level_%02d.txt" $level)
-            if [ -f "$file" ]; then
-                sed -e 's/^/    /' "$file"
-                echo ''
-                found=1
-            fi
-            class="$(dirname "$class")"
+        for src in "${sources[@]}"; do
+            file="$src/classes/$(printf "$full_class/level_%02d.txt" $level)"
+            [ -f "$file" ] \
+                && subclass_seen[$full_class]=1
 
-            if [ $class = '.' ]; then
-                if [ $found = 0 ]; then
-                    >&2 echo "** $full_class level ${class_level[$base_class]}: text not found"
-                    exit 1
+            found=0
+            while [ true ]; do
+                file="$src/classes/$(printf "$class/level_%02d.txt" $level)"
+                if [ -f "$file" ]; then
+                    sed -e 's/^/    /' "$file"
+                    echo ''
+                    found=1
                 fi
-                break
-            fi
+                class="$(dirname "$class")"
+                if [ $class = '.' ]; then
+                    if [ $found = 0 ]; then
+                        >&2 echo "** class \"$base_class\" level ${class_level[$base_class]} not found"
+                        exit 1
+                    fi
+                    break
+                fi
+            done
         done
     done
+done
+
+for subclass in "${!subclass_specified[@]}"; do
+    if [ -z "${subclass_seen[$subclass]}" ]; then
+        >&2 echo "** subclass \"$subclass\" not found"
+        exit 1
+    fi
 done
