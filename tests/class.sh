@@ -34,5 +34,17 @@ bats_require_minimum_version 1.5.0
         bash create.sh 6 monk
     [ "$status" -eq 0 ]
     [ "$stderr" = '** no subclass specified for class "monk"' ]
+    echo "$output" | grep 'Ki-Empowered Strikes'
 }
 
+@test "drawing from multiple sources" {
+    run --separate-stderr \
+        bash create.sh -s srd -s mnf 20 monk/playground
+    [ "$status" -eq 0 ]
+    echo "$output" | grep 'Storming Flower'
+
+    run --separate-stderr \
+        bash create.sh 20 monk/playground
+    [ "$status" -eq 1 ]
+    [ "$stderr" = '** subclass "monk/playground" not found' ]
+}

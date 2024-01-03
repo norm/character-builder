@@ -1,0 +1,13 @@
+### Dislocator
+
+Whenever you hit a creature with one of the attacks granted by your 
+Flurry of Blows, you can spend 1 Ki to grab them and throw them into the
+space behind you.
+
+  * It takes 1D6 extra Force damage.
+  * It must succeed on a Dexterity saving throw or be knocked prone.
+
+If there is an obstacle (wall, another creature) that stops it from entering
+that space, you instead switch places (this does not provoke opportunity
+attacks). If there is a drop behind you, the creature falls according to
+normal rules.

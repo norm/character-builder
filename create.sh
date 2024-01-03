@@ -5,7 +5,24 @@ declare -A class_level
 declare -A subclass_specified
 declare -A subclass_seen
 declare -a proficiency_bonus=(0 +2 +2 +2 +2 +3 +3 +3 +3 +4 +4 +4 +4 +5 +5 +5 +5 +6 +6 +6 +6 +6)
-declare -a sources=(srd)
+declare -a sources
+
+
+while [[ "$1" =~ ^- ]]; do
+    case "$1" in
+        -s)     sources+=("$2")
+                shift
+                shift
+                ;;
+        *)      >&2 echo "Unknown option: '$1'"
+                exit
+                ;;
+    esac
+done
+
+[ "${#sources[@]}" -eq 0 ] \
+    && sources=(srd)
+
 
 while [ -n "${2}" ]; do
     count="$1"
@@ -41,12 +58,13 @@ while [ -n "${2}" ]; do
         echo "Proficiency Bonus = ${proficiency_bonus[$overall_level]}"
         echo ''
 
+        found=0
         for src in "${sources[@]}"; do
             file="$src/classes/$(printf "$full_class/level_%02d.txt" $level)"
+            class="$full_class"
             [ -f "$file" ] \
                 && subclass_seen[$full_class]=1
 
-            found=0
             while [ true ]; do
                 file="$src/classes/$(printf "$class/level_%02d.txt" $level)"
                 if [ -f "$file" ]; then
@@ -54,16 +72,16 @@ while [ -n "${2}" ]; do
                     echo ''
                     found=1
                 fi
+
                 class="$(dirname "$class")"
-                if [ $class = '.' ]; then
-                    if [ $found = 0 ]; then
-                        >&2 echo "** class \"$base_class\" level ${class_level[$base_class]} not found"
-                        exit 1
-                    fi
-                    break
-                fi
+                [ $class = '.' ] \
+                    && break
             done
         done
+        if [ $found = 0 ]; then
+            >&2 echo "** class \"$base_class\" level ${class_level[$base_class]} not found"
+            exit 1
+        fi
     done
 done
 

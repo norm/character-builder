@@ -1,0 +1,6 @@
+### Thunder Strike
+
+Whenever you hit a single creature for the third time in one turn, you can use
+your reaction to spend 3 Ki to empower this hit for one extra Martial Arts die
+of Thunder damage, it is knocked prone, and it is stunned until the end of its
+next turn.
