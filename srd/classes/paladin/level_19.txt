@@ -1,5 +1,5 @@
 Hit Dice = D10
-Spell Slots Single ++
+++ Spell Slots Single
 
 ### Ability Score Improvement
 

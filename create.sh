@@ -124,18 +124,20 @@ while [ -n "${2}" ]; do
             | sort \
                 > $level_temp/new_values
 
-        # remove spell slot increments
-        if grep --quiet '^    Spell Slots ++' $level_temp/text; then
+        # handle spell slot increments
+        if grep --quiet '^    ++ Spell Slots$' $level_temp/text; then
             let spell_slot_level++
         fi
-        if grep --quiet '^    Spell Slots Single ++' $level_temp/text; then
+        if grep --quiet '^    ++ Spell Slots Single$' $level_temp/text; then
             [ ${#class_specified[@]} -eq 1 ] \
                 && let spell_slot_level++
         fi
-        if grep --quiet '^    Spell Slots Multi ++' $level_temp/text; then
+        if grep --quiet '^    ++ Spell Slots Multi$' $level_temp/text; then
             [ ${#class_specified[@]} -gt 1 ] \
                 && let spell_slot_level++
         fi
+
+        sed -i '' -e '/^    ++ Spell Slots/d' $level_temp/text
 
         while read value; do
             value_file="$level_temp/value.$(slugify "${value%% =*}")"
@@ -151,7 +153,6 @@ while [ -n "${2}" ]; do
 
         grep -v \
             -e '^    [^ ].* = ' \
-            -e '^    Spell Slots.* ++' \
             $level_temp/text
         echo ''
     done

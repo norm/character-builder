@@ -1,5 +1,5 @@
 Hit Dice = D10
-Spell Slots Multi ++
+++ Spell Slots Multi
 
 ### Aura of Protection
 
