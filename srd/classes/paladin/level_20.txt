@@ -1,0 +1,2 @@
+Hit Dice = D10
+Spell Slots Multi ++

@@ -1,0 +1,34 @@
+Hit Dice = D10
+
+### Divine Sense
+
+The presence of strong evil registers on your senses like a noxious odor, and
+powerful good rings like heavenly music in your ears. As an action, you can
+open your awareness to detect such forces. Until the end of your next turn,
+you know the location of any celestial, fiend, or undead within 60 feet of you
+that is not behind total cover. You know the type (celestial, fiend, or
+undead) of any being whose presence you sense, but not its identity (for
+example, if the vampire Count Strahd von Zarovich was near, you would only
+know an undead creature). Within the same radius, you also detect the presence
+of any place or object that has been consecrated or desecrated, as per the
+Hallow spell.
+
+You can use this feature a number of times equal to 1 plus your Charisma
+modifier. You regain all expended uses when you finish a Long Rest.
+
+### Lay on Hands
+
+Your blessed touch can heal wounds. You have a pool of healing power that can
+restore hit points equal to five times your Paladin level. It replenishes
+when you finish a Long Rest.
+
+As an action, you can touch a creature and draw power from the pool to restore
+a number of hit points to that creature up to the maximum amount remaining in
+your pool.
+
+Alternatively, you can expend 5 hit points from your pool to cure the target
+of one disease or neutralize one poison affecting it. You can cure multiple
+diseases and neutralize multiple poisons with a single use of Lay on Hands,
+expending hit points separately for each one.
+
+This feature has no effect on undead or constructs.

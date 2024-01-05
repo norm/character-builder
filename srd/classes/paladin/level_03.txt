@@ -1,0 +1,28 @@
+Hit Dice = D10
+Spell Slots Single ++
+
+### Divine Health
+
+The divine magic flowing through you makes you immune to disease.
+
+### Sacred Oath
+
+You swear the oath that binds you as a Paladin forever. Up to this time you
+have been in a preparatory stage, committed to the path but not yet sworn
+to it.
+
+Your oath allows you to channel divine energy to fuel magical effects. 
+
+### Oath Spells
+
+Each oath has a list of associated spells. Once you gain access to an oath
+spell you always have it prepared, and they do not count against the number of
+spells you can prepare each day. Even if any gained spell is not on the
+Paladin spell list, it is nonetheless a Paladin spell for you.
+
+### Channel Divinity
+
+Your oath allows you to channel divine energy into magical effects. When you
+use Channel Divinity, you must then finish a Short or Long Rest to use the
+ability with any option again. Some options require saving throws, which is
+against your Paladin spell save DC.

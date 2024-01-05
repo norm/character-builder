@@ -1,0 +1,8 @@
+Hit Dice = D10
+Spell Slots Multi ++
+
+### Aura of Protection
+
+Whenever you or a friendly creature within 10 feet of you must make a saving
+throw, the creature gains a bonus to the saving throw equal to your Charisma
+modifier (minimum of +1). You must be conscious to grant this bonus.

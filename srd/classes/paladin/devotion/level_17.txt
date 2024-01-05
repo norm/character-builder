@@ -1,0 +1,2 @@
+Spell Gain = Commune
+Spell Gain = Flame Strike

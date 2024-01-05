@@ -1,0 +1,10 @@
+Hit Dice = D10
+Spell Slots Multi ++
+
+### Cleansing Touch
+
+You can use your action to end one spell on yourself or one willing creature
+that you touch.
+
+You can use this feature a number of times equal to your Charisma modifier 
+(minimum of 1). You regain expended uses when you finish a Long Rest.

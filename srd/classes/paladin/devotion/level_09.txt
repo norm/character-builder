@@ -1,0 +1,2 @@
+Spell Gain = Beacon of Hope
+Spell Gain = Dispel Magic

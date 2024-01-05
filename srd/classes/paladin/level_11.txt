@@ -1,0 +1,10 @@
+Hit Dice = D10
+Spell Slots Single ++
+
+### Continuous Smite
+
+You are now so suffused with righteous might that all your melee weapon
+strikes carry divine power with them. Whenever you hit a creature with a melee
+weapon, the creature takes an extra 1D8 radiant damage. If you also use your
+Divine Smite with an attack, you add this damage to the extra damage from
+Divine Smite.

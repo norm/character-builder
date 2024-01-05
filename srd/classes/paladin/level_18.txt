@@ -1,0 +1,11 @@
+Hit Dice = D10
+Spell Slots Multi ++
+
+### Aura of Protection
+
+The range of your Aura of Protection increases to 30 feet.
+
+### Aura of Courage
+
+The range of your Aura of Courage increases to 30 feet.
+

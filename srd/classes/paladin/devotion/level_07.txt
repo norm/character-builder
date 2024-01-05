@@ -1,0 +1,4 @@
+### Aura of Devotion
+
+You and friendly creatures within 10 feet of you can't be charmed while you
+are conscious.

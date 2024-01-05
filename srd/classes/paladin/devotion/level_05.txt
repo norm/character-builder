@@ -1,0 +1,2 @@
+Spell Gain = Lesser Restoration
+Spell Gain = Zone of Truth

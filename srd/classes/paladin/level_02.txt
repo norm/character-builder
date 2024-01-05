@@ -1,0 +1,74 @@
+Hit Dice = D10
+Spell Slots ++
+
+### Fighting Style
+
+You adopt a style of fighting as your speciality. Choose one of the following
+options. You can't take a Fighting Style option more than once, even if you
+later get to choose again.
+
+    Defense
+        While you are wearing armor, you gain a +1 bonus to AC.
+
+    Dueling
+        When you are wielding a melee weapon in one hand and no other
+        weapons, you gain a +2 bonus to damage rolls with that weapon.
+
+### Great Weapon Fighting
+
+When you roll a 1 or 2 on a damage die for an attack you make with a melee
+weapon that you are wielding with two hands, you can reroll the die and must
+use the new roll. The weapon must have the Two-Handed or Versatile property
+for you to gain this benefit.
+
+### Protection
+
+When a creature you can see attacks a target other than you that is within 5
+feet of you, you can use your reaction to impose disadvantage on the attack
+roll. You must be wielding a shield.
+
+### Spellcasting
+
+You have learned to draw on divine magic through meditation and prayer to cast
+spells as a cleric does.
+
+To cast one of your Paladin spells of 1st level or higher, you must expend a
+slot of the spell's level or higher. You regain all expended spell slots when
+you finish a Long Rest.
+
+You prepare the list of Paladin spells that are available for you to cast,
+choosing from the Paladin spell list. When you do so, choose a number of
+Paladin spells equal to your Charisma modifier plus half your Paladin level
+rounded down (to a minimum of one). The spells must be of a level for which
+you have spell slots.
+
+For example, if you are a 5th-level Paladin, you have four 1st-level and two
+2nd-level spell slots. With a Charisma of 14, your list of prepared spells can
+include four spells of 1st or 2nd level, in any combination. If you prepare
+the 1st-level spell Cure Wounds, you could cast it using either a 1st-level or
+2nd-level spell slot. Casting the spell doesn't remove it from your list of
+prepared spells.
+
+You can change your list of prepared spells when you finish a Long Rest.
+Preparing a new list of Paladin spells requires time spent in prayer and
+meditation, at least 1 minute per spell level per spell on your list.
+
+### Spellcasting Ability
+
+Your power derives from the strength of your convictions, hence you use your
+Charisma whenever a spell refers to your spellcasting ability.
+
+    Spell save DC = 8 plus your Proficiency bonus + your Charisma modifier
+    Spell attack modifier = your Proficiency bonus + your Charisma modifier
+
+### Spellcasting Focus
+
+You can use a holy symbol as a spellcasting focus for your Paladin spells.
+
+### Divine Smite
+
+When you hit a creature with a melee weapon attack, you can expend one spell
+slot to deal radiant damage to the target in addition to the weapon's damage.
+The extra damage is 2D8 for a 1st-level spell slot, plus 1D8 for each extra
+level higher than 1st to a maximum of 5D8. The damage increases by a further
+1D8 if the target is an undead or a fiend.

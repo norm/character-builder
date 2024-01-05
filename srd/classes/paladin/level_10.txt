@@ -1,0 +1,7 @@
+Hit Dice = D10
+Spell Slots Multi ++
+
+### Aura of Courage
+
+You and friendly creatures within 10 feet of you can't be frightened while you
+are conscious.

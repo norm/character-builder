@@ -1,0 +1,7 @@
+Hit Dice = D10
+Spell Slots Single ++
+
+### Extra Attack
+
+You can attack twice instead of once whenever you take the Attack action on
+your turn.
