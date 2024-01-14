@@ -30,8 +30,10 @@ declare -a spell_slots=(''
     '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ][ ] 6:[ ][ ] 7:[ ] 8:[ ] 9:[ ]'
     '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ][ ] 6:[ ][ ] 7:[ ][ ] 8:[ ] 9:[ ]'
 )
-level_temp="$(mktemp -d "/tmp/dndcreate.XXXXX")"
 
+function cleanup {
+    rm -rf "${level_temp}"
+}
 
 function slugify {
     echo "$*" \
@@ -41,6 +43,9 @@ function slugify {
         | tr A-Z a-z
 }
 
+
+level_temp="$(mktemp -d "/tmp/dndcreate.XXXXX")"
+trap cleanup EXIT
 
 while [[ "$1" =~ ^- ]]; do
     case "$1" in
@@ -138,19 +143,19 @@ while [ -n "${2}" ]; do
             [ ${#class_specified[@]} -gt 1 ] \
                 && let spell_slot_level++
         fi
-        sed -i '' -e '/^    ++ Spell Slots/d' $level_temp/text
+        sed -i -e '/^    ++ Spell Slots/d' $level_temp/text
 
         # handle gaining spells/etc
         grep '^    ++ Added .*:' $level_temp/text \
             | sed -e 's/^    ++ //' \
                 > $level_temp/value.10new
-        sed -i '' -e '/^    ++ Added .*:/d' $level_temp/text
+        sed -i -e '/^    ++ Added .*:/d' $level_temp/text
 
         # handle feature replacements
         grep '^    ++ Exchange .*:' $level_temp/text \
             | sed -e 's/^    ++ //' \
                 > $level_temp/value.20replace
-        sed -i '' -e '/^    ++ Exchange .*:/d' $level_temp/text
+        sed -i -e '/^    ++ Exchange .*:/d' $level_temp/text
 
         while read value; do
             value_file="$level_temp/value.$(slugify "${value%% =*}")"
