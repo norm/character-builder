@@ -1,2 +1,2 @@
-Spell Gain = Lesser Restoration
-Spell Gain = Zone of Truth
+++ Added Oath Spell: Lesser Restoration
+++ Added Oath Spell: Zone of Truth

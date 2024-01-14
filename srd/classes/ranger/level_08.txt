@@ -1,5 +1,6 @@
-++ Spell Slots
-++ Added to Spellbook: two Wizard, any level
+Hit Dice = D10
+++ Spell Slots Multi
+++ Exchange Spell: can replace one Ranger, with another up to 2nd-level
 
 ### Ability Score Improvement
 

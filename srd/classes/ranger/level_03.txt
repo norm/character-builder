@@ -1,0 +1,4 @@
+Hit Dice = D10
+++ Spell Slots Single
+++ Added Spell: one Ranger, 1st-level
+++ Exchange Spell: can replace one Ranger, with another 1st-level

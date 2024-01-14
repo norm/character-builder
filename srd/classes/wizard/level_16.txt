@@ -1,1 +1,7 @@
 ++ Spell Slots
+++ Added to Spellbook: two Wizard, up to 8th-level
+
+### Ability Score Improvement
+
+You can increase an ability score of your choice by 2, or two scores by
+1. You cannot increase a score above 20 with this feature.

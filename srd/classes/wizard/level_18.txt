@@ -1,1 +1,2 @@
 ++ Spell Slots
+++ Added to Spellbook: two Wizard, any level

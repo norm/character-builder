@@ -1,5 +1,5 @@
-Spell Gain = Protection From Evil and Good
-Spell Gain = Sanctuary
+++ Added Oath Spell: Protection From Evil and Good
+++ Added Oath Spell: Sanctuary
 
 
 ### Oath of Devotion

@@ -91,7 +91,7 @@ while [ -n "${2}" ]; do
         echo ''
 
         cp /dev/null $level_temp/text
-        echo "Proficiency Bonus = ${proficiency_bonus[$overall_level]}" > $level_temp/value.0proficiency
+        echo "Proficiency Bonus = ${proficiency_bonus[$overall_level]}" > $level_temp/value.02proficiency
 
         found=0
         for src in "${sources[@]}"; do
@@ -119,10 +119,12 @@ while [ -n "${2}" ]; do
         fi
 
         # extract values from the text so they can be parsed
-        grep '^    [^ ].* = ' $level_temp/text \
-            | sed -e 's/^    //' \
-            | sort \
-                > $level_temp/new_values
+        grep \
+            -e '^    [^ ].* = ' \
+                $level_temp/text \
+                    | sed -e 's/^    //' \
+                    | sort \
+                        > $level_temp/new_values
 
         # handle spell slot increments
         if grep --quiet '^    ++ Spell Slots$' $level_temp/text; then
@@ -136,8 +138,19 @@ while [ -n "${2}" ]; do
             [ ${#class_specified[@]} -gt 1 ] \
                 && let spell_slot_level++
         fi
-
         sed -i '' -e '/^    ++ Spell Slots/d' $level_temp/text
+
+        # handle gaining spells/etc
+        grep '^    ++ Added .*:' $level_temp/text \
+            | sed -e 's/^    ++ //' \
+                > $level_temp/value.10new
+        sed -i '' -e '/^    ++ Added .*:/d' $level_temp/text
+
+        # handle feature replacements
+        grep '^    ++ Exchange .*:' $level_temp/text \
+            | sed -e 's/^    ++ //' \
+                > $level_temp/value.20replace
+        sed -i '' -e '/^    ++ Exchange .*:/d' $level_temp/text
 
         while read value; do
             value_file="$level_temp/value.$(slugify "${value%% =*}")"

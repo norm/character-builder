@@ -1,2 +1,2 @@
-Spell Gain = Commune
-Spell Gain = Flame Strike
+++ Added Oath Spell: Commune
+++ Added Oath Spell: Flame Strike

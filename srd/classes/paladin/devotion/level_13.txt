@@ -1,2 +1,2 @@
-Spell Gain = Freedom of Movement
-Spell Gain = Guardian of Faith
+++ Added Oath Spell: Freedom of Movement
+++ Added Oath Spell: Guardian of Faith

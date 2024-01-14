@@ -1,2 +1,2 @@
-Spell Gain = Beacon of Hope
-Spell Gain = Dispel Magic
+++ Added Oath Spell: Beacon of Hope
+++ Added Oath Spell: Dispel Magic

@@ -1,0 +1,3 @@
+Hit Dice = D10
+++ Spell Slots Multi
+++ Exchange Spell: can replace one Ranger spell with another of any level

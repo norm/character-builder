@@ -1,0 +1,1 @@
+Hit Dice = D10
