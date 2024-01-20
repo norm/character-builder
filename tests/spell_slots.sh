@@ -24,7 +24,7 @@ Spell Slots 1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ][ ] 6:[ ]
 Spell Slots 1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ][ ] 6:[ ][ ] 7:[ ][ ] 8:[ ] 9:[ ]"
 
     run --separate-stderr \
-        bash create.sh 20 wizard
+        ./create.sh 20 wizard
 
     diff -u <(echo "$expected") <(echo "$output" | grep 'Spell Slots')
 }
@@ -51,7 +51,7 @@ Spell Slots 1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ]
 Spell Slots 1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ]"
 
     run --separate-stderr \
-        bash create.sh 20 paladin
+        ./create.sh 20 paladin
 
     diff -u <(echo "$expected") <(echo "$output" | grep 'Spell Slots')
 }
@@ -61,7 +61,7 @@ Spell Slots 1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ]"
 Spell Slots 1:[ ][ ]"
 
     run --separate-stderr \
-        bash create.sh 1 wizard 1 paladin
+        ./create.sh 1 wizard 1 paladin
 
     diff -u <(echo "$expected") <(echo "$output" | grep 'Spell Slots')
 }
@@ -72,7 +72,7 @@ Spell Slots 1:[ ][ ]
 Spell Slots 1:[ ][ ][ ]"
 
     run --separate-stderr \
-        bash create.sh 1 wizard 2 paladin
+        ./create.sh 1 wizard 2 paladin
 
     diff -u <(echo "$expected") <(echo "$output" | grep 'Spell Slots')
 }
@@ -88,7 +88,7 @@ Spell Slots 1:[ ][ ][ ]"
     # spell slot calculations
 
     run --separate-stderr \
-        bash create.sh 1 wizard 3 paladin
+        ./create.sh 1 wizard 3 paladin
 
     diff -u <(echo "$expected") <(echo "$output" | grep 'Spell Slots')
 }
@@ -116,7 +116,7 @@ Spell Slots 1:[ ][ ]
 Spell Slots 1:[ ][ ]"
 
     run --separate-stderr \
-        bash create.sh 1 wizard 19 monk
+        ./create.sh 1 wizard 19 monk
 
     diff -u <(echo "$expected") <(echo "$output" | grep 'Spell Slots')
 }

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -euo pipefail
+#!/usr/bin/env -S bash -euo pipefail
 
 overall_level=0
 declare -A class_level
@@ -6,7 +6,7 @@ declare -A class_specified
 declare -A subclass_specified
 declare -A subclass_seen
 declare -a proficiency_bonus=(0 +2 +2 +2 +2 +3 +3 +3 +3 +4 +4 +4 +4 +5 +5 +5 +5 +6 +6 +6 +6 +6)
-declare -a sources
+declare -a sources=()
 declare -i spell_slot_level=0
 declare -a spell_slots=(''
     '1:[ ][ ]'
@@ -47,7 +47,7 @@ function slugify {
 level_temp="$(mktemp -d "/tmp/dndcreate.XXXXX")"
 trap cleanup EXIT
 
-while [[ "$1" =~ ^- ]]; do
+while [[ "${1:-}" =~ ^- ]]; do
     case "$1" in
         -s)     sources+=("$2")
                 shift
@@ -63,7 +63,7 @@ done
     && sources=(srd)
 
 
-while [ -n "${2}" ]; do
+while [ -n "${2:-}" ]; do
     count="$1"
     class="$2"
     shift
@@ -81,11 +81,11 @@ while [ -n "${2}" ]; do
     fi
 
     while [ $count -gt 0 ]; do
-        let overall_level++
+        let overall_level=overall_level+1
         let count--
 
         class="$full_class"
-        class_level[$base_class]=$((${class_level[$base_class]} + 1))
+        class_level[$base_class]=$((${class_level[$base_class]:-0} + 1))
         level=${class_level[$base_class]}
 
         echo -n "## Level $overall_level - "
@@ -129,32 +129,35 @@ while [ -n "${2}" ]; do
                 $level_temp/text \
                     | sed -e 's/^    //' \
                     | sort \
-                        > $level_temp/new_values
+                        > $level_temp/new_values \
+                        || true
 
         # handle spell slot increments
         if grep --quiet '^    ++ Spell Slots$' $level_temp/text; then
-            let spell_slot_level++
+            let spell_slot_level=spell_slot_level+1
         fi
         if grep --quiet '^    ++ Spell Slots Single$' $level_temp/text; then
             [ ${#class_specified[@]} -eq 1 ] \
-                && let spell_slot_level++
+                && let spell_slot_level=spell_slot_level+1
         fi
         if grep --quiet '^    ++ Spell Slots Multi$' $level_temp/text; then
             [ ${#class_specified[@]} -gt 1 ] \
-                && let spell_slot_level++
+                && let spell_slot_level=spell_slot_level+1
         fi
         sed -i -e '/^    ++ Spell Slots/d' $level_temp/text
 
         # handle gaining spells/etc
         grep '^    ++ Added .*:' $level_temp/text \
             | sed -e 's/^    ++ //' \
-                > $level_temp/value.10new
+                > $level_temp/value.10new \
+                || true
         sed -i -e '/^    ++ Added .*:/d' $level_temp/text
 
         # handle feature replacements
         grep '^    ++ Exchange .*:' $level_temp/text \
             | sed -e 's/^    ++ //' \
-                > $level_temp/value.20replace
+                > $level_temp/value.20replace \
+                || true
         sed -i -e '/^    ++ Exchange .*:/d' $level_temp/text
 
         while read value; do
@@ -177,7 +180,7 @@ while [ -n "${2}" ]; do
 done
 
 for subclass in "${!subclass_specified[@]}"; do
-    if [ -z "${subclass_seen[$subclass]}" ]; then
+    if [ -z "${subclass_seen[$subclass]:-}" ]; then
         >&2 echo "** subclass \"$subclass\" not found"
         exit 1
     fi

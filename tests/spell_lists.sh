@@ -15,7 +15,7 @@ Added Oath Spell: Commune
 Added Oath Spell: Flame Strike"
 
     run --separate-stderr \
-        bash create.sh 20 paladin/devotion
+        ./create.sh 20 paladin/devotion
 
     diff -u <(echo "$expected") <(echo "$output" | grep 'Added')
 }
@@ -24,7 +24,7 @@ Added Oath Spell: Flame Strike"
     spellbook="Added to Spellbook: six Wizard, 1st-level"
 
     run --separate-stderr \
-        bash create.sh 1 wizard
+        ./create.sh 1 wizard
 
     diff -u <(echo "$spellbook") <(echo "$output" | grep 'Added.*Spellbook')
 }
@@ -41,7 +41,7 @@ Added to Spellbook: two Wizard, 1st-level
 Added to Spellbook: two Wizard, up to 2nd-level"
 
     run --separate-stderr \
-        bash create.sh 4 ranger 3 wizard
+        ./create.sh 4 ranger 3 wizard
 
     diff -u <(echo "$added_spells") <(echo "$output" | grep 'Added')
     [ "$final_slots" = "$(echo "$output" | grep "Slots" | tail -1)" ]
@@ -53,7 +53,7 @@ Exchange Spell: can replace one Ranger, with another 1st-level
 Exchange Spell: can replace one Ranger, with another up to 2nd-level"
 
     run --separate-stderr \
-        bash create.sh 5 ranger
+        ./create.sh 5 ranger
 
     diff -u <(echo "$replace_spells") <(echo "$output" | grep 'Exchange')
 }

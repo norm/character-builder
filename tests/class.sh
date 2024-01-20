@@ -3,24 +3,24 @@ bats_require_minimum_version 1.5.0
 
 @test "non-existent class is an error" {
     run --separate-stderr \
-        bash create.sh 6 coward/runsaway
+        ./create.sh 6 coward/runsaway
     [ "$status" -eq 1 ]
     [ "$stderr" = '** class "coward" level 1 not found' ]
 
     run --separate-stderr \
-        bash create.sh 1 monk/openhand 1 coward/runsaway
+        ./create.sh 1 monk/openhand 1 coward/runsaway
     [ "$status" -eq 1 ]
     [ "$stderr" = '** class "coward" level 1 not found' ]
 }
 
 @test "non-existent subclass is an error" {
     run --separate-stderr \
-        bash create.sh 1 monk/boneless
+        ./create.sh 1 monk/boneless
     [ "$status" -eq 1 ]
     [ "$stderr" = '** subclass "monk/boneless" not found' ]
 
     run --separate-stderr \
-        bash create.sh 6 monk/openhand 1 warlock/noseybonk
+        ./create.sh 6 monk/openhand 1 warlock/noseybonk
     [ "$status" -eq 1 ]
     [ "$stderr" = '** subclass "warlock/noseybonk" not found' ]
 }
@@ -31,7 +31,7 @@ bats_require_minimum_version 1.5.0
     # fewer abilities, that is not considered a broken state
 
     run --separate-stderr \
-        bash create.sh 6 monk
+        ./create.sh 6 monk
     [ "$status" -eq 0 ]
     [ "$stderr" = '** no subclass specified for class "monk"' ]
     echo "$output" | grep 'Ki-Empowered Strikes'
@@ -39,12 +39,12 @@ bats_require_minimum_version 1.5.0
 
 @test "drawing from multiple sources" {
     run --separate-stderr \
-        bash create.sh -s srd -s mnf 20 monk/playground
+        ./create.sh -s srd -s mnf 20 monk/playground
     [ "$status" -eq 0 ]
     echo "$output" | grep 'Storming Flower'
 
     run --separate-stderr \
-        bash create.sh 20 monk/playground
+        ./create.sh 20 monk/playground
     [ "$status" -eq 1 ]
     [ "$stderr" = '** subclass "monk/playground" not found' ]
 }
