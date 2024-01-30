@@ -1,0 +1,47 @@
+Name = Shade of the Tree
+
+--- ability scores
+Strength = 10
+Dexterity = 15
+Constitution = 14
+Intelligence = 8
+Wisdom = 13
+Charisma = 12
+
+--- race
+Race = Tabaxi
+Charisma += 1
+Dexterity += 2
+Size = Medium
+Proficiency += Perception
+Proficiency += Stealth
+
+--- equipment
+# Decide later, should be minimal.
+# Maybe only from background?
+
+--- gold
+
+--- Monk Level 1
+Proficiency += Religion
+Proficiency += Acrobatics
+Proficiency += Jeweler's Tools
+Hit Points += 8
+
+--- Monk Level 2
+Hit Points += 5
+
+--- Monk Level 3
+Hit Points += 6
+
+--- Monk Level 4
+Hit Points += 2
+
+--- Monk Level 5
+Hit Points += 5
+
+--- Warlock Level 1
+Hit Points += 3
+Cantrips += acid-arrow
+Cantrips += eldritch-blast
+Cantrips += minor-illusion
