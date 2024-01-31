@@ -1,4 +1,4 @@
-Hit Dice = D10
+++ Hit Dice += d10
 ++ Spell Slots Single
-++ Added Spell: one Ranger, up to 4th-level
-++ Exchange Spell: can replace one Ranger spell with another up to 4th-level
+** Add Spell: one Ranger, up to 4th-level
+** Exchange Spell: can replace one Ranger spell with another up to 4th-level

@@ -1,8 +1,8 @@
-Hit Dice = D8
-Eldritch Invocations = 8
-Pact Magic Slots = 5th level [ ][ ][ ][ ]
-Spells Known = 15
-Cantrips Known = 4
+++ Hit Dice += d8
+== Eldritch Invocations = 8
+== Pact Magic Slots = 5th level [ ][ ][ ][ ]
+== Warlock Spells Known = 15
+== Warlock Cantrips Known = 4
 
 ### Ability Score Improvement
 

@@ -1,7 +1,7 @@
-Hit Points = D8
-Martial Arts die = D6
-Ki points = 10
-Unarmored Movement bonus = +20 feet
+++ Hit Dice += d8
+== Martial Arts die = d6
+== Ki points = 10
+== Unarmored Movement bonus = +20 feet
 
 ### Purity of Body
 

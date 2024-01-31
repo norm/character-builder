@@ -1,38 +1,20 @@
 #!/usr/bin/env -S bash -euo pipefail
 
-overall_level=0
 declare -A class_level
 declare -A class_specified
-declare -A subclass_specified
+declare -A hit_dice=( ["d6"]=0 ["d8"]=0 ["d10"]=0 ["d12"]=0 )
+declare -A hit_points=( ["min"]=0 ["max"]=0 ["rolled"]=0 )
 declare -A subclass_seen
+declare -A subclass_specified
 declare -a proficiency_bonus=(0 +2 +2 +2 +2 +3 +3 +3 +3 +4 +4 +4 +4 +5 +5 +5 +5 +6 +6 +6 +6 +6)
 declare -a sources=()
+declare -a spell_slots
+declare -i overall_level=0
 declare -i spell_slot_level=0
-declare -a spell_slots=(''
-    '1:[ ][ ]'
-    '1:[ ][ ][ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ] 6:[ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ] 6:[ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ] 6:[ ] 7:[ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ] 6:[ ] 7:[ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ] 6:[ ] 7:[ ] 8:[ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ] 6:[ ] 7:[ ] 8:[ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ] 6:[ ] 7:[ ] 8:[ ] 9:[ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ][ ] 6:[ ] 7:[ ] 8:[ ] 9:[ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ][ ] 6:[ ][ ] 7:[ ] 8:[ ] 9:[ ]'
-    '1:[ ][ ][ ][ ] 2:[ ][ ][ ] 3:[ ][ ][ ] 4:[ ][ ][ ] 5:[ ][ ][ ] 6:[ ][ ] 7:[ ][ ] 8:[ ] 9:[ ]'
-)
+
 
 function cleanup {
-    rm -rf "${level_temp}"
+    rm -rf "${level_temp}" "${character_temp}"
 }
 
 function slugify {
@@ -43,8 +25,36 @@ function slugify {
         | tr A-Z a-z
 }
 
+function extract_value {
+    echo "$@" | sed -e 's/^.* [^ ]*= *//'
+}
 
-level_temp="$(mktemp -d "/tmp/dndcreate.XXXXX")"
+function update_hit_points {
+    local die=6
+    hit_die=$(extract_value "$@")
+
+    [[ "$hit_die" =~ ^[Dd]([1-9][0-9]*)$ ]] \
+        && die=${BASH_REMATCH[1]}
+
+    if [[ -v hit_dice["d$die"] ]]; then
+        rolled=$(roll_die "$hit_die")
+        let hit_dice["d$die"]=hit_dice["$hit_die"]+1
+        let hit_points["min"]=hit_points["min"]+1
+        let hit_points["max"]=hit_points["max"]+die
+        let hit_points["rolled"]=hit_points["rolled"]+rolled
+        echo "** Hit Points: rolled $rolled ($hit_die)" \
+            > $level_temp/update.hit-points
+    else
+        >&2 echo "** Unknown Hit Die type: '$hit_die'"
+        exit 1
+    fi
+}
+
+source roll_die.sh
+source spell_slots.sh
+
+level_temp="$(mktemp -d "/tmp/dndcreate.level.XXXXX")"
+character_temp="$(mktemp -d "/tmp/dndcreate.char.XXXXX")"
 trap cleanup EXIT
 
 while [[ "${1:-}" =~ ^- ]]; do
@@ -61,7 +71,6 @@ done
 
 [ "${#sources[@]}" -eq 0 ] \
     && sources=(srd)
-
 
 while [ -n "${2:-}" ]; do
     count="$1"
@@ -88,14 +97,8 @@ while [ -n "${2:-}" ]; do
         class_level[$base_class]=$((${class_level[$base_class]:-0} + 1))
         level=${class_level[$base_class]}
 
-        echo -n "## Level $overall_level - "
-        for f in "${!class_level[@]}"; do
-            echo -n "${f^} ${class_level[$f]} "
-        done
-        echo ''
-        echo ''
+        rm -f $level_temp/*
 
-        cp /dev/null $level_temp/text
         echo "Proficiency Bonus = ${proficiency_bonus[$overall_level]}" > $level_temp/value.02proficiency
 
         found=0
@@ -123,61 +126,100 @@ while [ -n "${2:-}" ]; do
             exit 1
         fi
 
-        # extract values from the text so they can be parsed
-        grep \
-            -e '^    [^ ].* = ' \
-                $level_temp/text \
-                    | sed -e 's/^    //' \
-                    | sort \
-                        > $level_temp/new_values \
-                        || true
+        # extract set/updated values
+        while read value_set; do
+            key=$(echo "$value_set" | sed -e 's/ *[^ ]*= *.*//')
+            echo "$value_set" > $level_temp/value.$(slugify "$key")
+        done < <(sed -ne 's/^    == *//p' $level_temp/text)
+        sed -i -e '/^    == .* [^ ]*=/d' $level_temp/text
+
+        while read added; do
+            # split '++ Die = d10' into two, leaving '++ More Stuff' alone
+            key=$(echo "$added" | sed -e 's/ *[^ ]*= *.*//')
+            value=$(echo "$added" | sed -e 's/^.* *[^ ]*= *//')
+            # >&2 echo "** key=$key value=$value"
+            if [ "$key" != "$value" ]; then
+                echo "$value" >> $level_temp/update.$(slugify "$key")
+            else
+                echo "++ $added" >> $level_temp/update.$(slugify "$key")
+            fi
+        done < <(sed -ne 's/^    ++ *//p' $level_temp/text)
+        sed -i -e '/^    ++ /d' $level_temp/text
+        # >&2 echo '--'
+        # >&2 ls $level_temp
+        # >&2 echo '=='
+
+        while read choice; do
+            key=$(echo "$choice" | sed -e 's/:.*$//')
+            echo "** $choice" >> $level_temp/choice.$(slugify "$key")
+        done < <(sed -ne 's/^    \*\* *//p' $level_temp/text)
+        sed -i -e '/^    \*\* /d' $level_temp/text
 
         # handle spell slot increments
-        if grep --quiet '^    ++ Spell Slots$' $level_temp/text; then
+        if [ -f $level_temp/update.spell-slots ]; then
             let spell_slot_level=spell_slot_level+1
         fi
-        if grep --quiet '^    ++ Spell Slots Single$' $level_temp/text; then
+        if [ -f $level_temp/update.spell-slots-single ]; then
             [ ${#class_specified[@]} -eq 1 ] \
                 && let spell_slot_level=spell_slot_level+1
         fi
-        if grep --quiet '^    ++ Spell Slots Multi$' $level_temp/text; then
+        if [ -f $level_temp/update.spell-slots-multi ]; then
             [ ${#class_specified[@]} -gt 1 ] \
                 && let spell_slot_level=spell_slot_level+1
         fi
-        sed -i -e '/^    ++ Spell Slots/d' $level_temp/text
+        rm -f $level_temp/update.spell-slots*
 
-        # handle gaining spells/etc
-        grep '^    ++ Added .*:' $level_temp/text \
-            | sed -e 's/^    ++ //' \
-                > $level_temp/value.10new \
-                || true
-        sed -i -e '/^    ++ Added .*:/d' $level_temp/text
+        update_hit_points $(cat $level_temp/update.hit-dice)
+        rm $level_temp/update.hit-dice
 
-        # handle feature replacements
-        grep '^    ++ Exchange .*:' $level_temp/text \
-            | sed -e 's/^    ++ //' \
-                > $level_temp/value.20replace \
-                || true
-        sed -i -e '/^    ++ Exchange .*:/d' $level_temp/text
+        (
+            echo -n "## Level $overall_level - "
+            for f in "${!class_level[@]}"; do
+                echo -n "${f^} ${class_level[$f]} "
+            done
+            echo ''
+            echo ''
 
-        while read value; do
-            value_file="$level_temp/value.$(slugify "${value%% =*}")"
-            echo "$value" > $value_file
-        done < $level_temp/new_values
+            cp $level_temp/value.* $character_temp
 
-        # values appear first, then the text
-        cat $level_temp/value.*
-        [ $spell_slot_level -gt 0 ] \
-            && echo Spell Slots ${spell_slots[$spell_slot_level]}
+            for entry in $level_temp/choice.* $level_temp/update.*; do
+                [ -e $entry ] \
+                    && cat $entry >> $character_temp/text
+            done
 
-        echo ''
-
-        grep -v \
-            -e '^    [^ ].* = ' \
-            $level_temp/text
-        echo ''
+            cat $level_temp/text
+        ) >> $character_temp/text
     done
 done
+
+echo -n "Hit Dice: "
+for die in "${!hit_dice[@]}"; do
+    [ "${hit_dice["$die"]}" -gt 0 ] \
+        && echo -n "${hit_dice["$die"]}$die "
+done
+cat <<EOF
+
+    Spend one (or more) Hit Dice at the end of a Short Rest to heal.
+    Roll the die and add your Constitution modifer to regain that
+    many HP (up to your max).
+EOF
+
+# ${hit_dice["d6"]}d6 ${hit_dice["d8"]}d8 ${hit_dice["d10"]}d10 ${hit_dice["d12"]}d12"
+echo "Hit Points: ${hit_points["rolled"]} (possible: min=${hit_points["min"]} max=${hit_points["max"]})"
+# echo rolled = ${hit_points["rolled"]}
+# echo average = ${hit_points["average"]}
+cat <<EOF
+    At the end of a Long Rest, regain all lost HP and up to one half 
+    of your total Hit Dice rounded down, with a minimum of one die.
+
+EOF
+
+[ $spell_slot_level -gt 0 ] \
+    && echo Spell Slots ${spell_slots[$spell_slot_level]}
+cat $character_temp/value.*
+echo ''
+echo ''
+cat $character_temp/text
 
 for subclass in "${!subclass_specified[@]}"; do
     if [ -z "${subclass_seen[$subclass]:-}" ]; then

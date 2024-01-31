@@ -1,5 +1,6 @@
+++ Hit Dice += d6
 ++ Spell Slots
-++ Added to Spellbook: two Wizard, up to 8th-level
+** Add to Spellbook: two Wizard, up to 8th-level
 
 ### Ability Score Improvement
 

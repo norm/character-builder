@@ -1,2 +1,3 @@
+++ Hit Dice += d6
 ++ Spell Slots
-++ Added to Spellbook: two Wizard, up to 7th-level
+** Add to Spellbook: two Wizard, up to 7th-level

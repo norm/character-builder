@@ -1,4 +1,4 @@
-Hit Points = D8
-Martial Arts die = D8
-Ki points = 11
-Unarmored Movement bonus = +20 feet
+++ Hit Dice += d8
+== Martial Arts die = d8
+== Ki points = 11
+== Unarmored Movement bonus = +20 feet

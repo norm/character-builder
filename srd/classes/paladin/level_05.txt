@@ -1,4 +1,4 @@
-Hit Dice = D10
+++ Hit Dice += d10
 ++ Spell Slots Single
 
 ### Extra Attack

@@ -1,8 +1,8 @@
-Hit Dice = D6
+++ Hit Dice += d6
 ++ Spell Slots
-++ Added Spells: three Wizard, cantrip
-++ Added to Spellbook: six Wizard, 1st-level
-++ Prepared Spells: 1 + Intelligence Modifier (min. 1)
+** Add Cantrips: three Wizard
+** Add to Spellbook: six Wizard, 1st-level
+** Prepared Spells: 1 + Intelligence Modifier (min. 1)
 
 ### Spellcasting
 

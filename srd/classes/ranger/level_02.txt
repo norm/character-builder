@@ -1,6 +1,6 @@
-Hit Dice = D10
+++ Hit Dice += d10
 ++ Spell Slots
-++ Added Spells: two Ranger, 1st-level
+** Add Spells: two Ranger, 1st-level
 
 ### Spellcasting
 

@@ -1,8 +1,8 @@
-Hit Dice = D8
-Eldritch Invocations = 2
-Pact Magic Slots = 2nd level [ ][ ]
-Spells Known = 4
-Cantrips Known = 2
+++ Hit Dice += d8
+== Eldritch Invocations = 2
+== Pact Magic Slots = 2nd level [ ][ ]
+== Warlock Spells Known = 4
+== Warlock Cantrips Known = 2
 
 ### Pact Boon
 

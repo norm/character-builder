@@ -1,7 +1,7 @@
-Hit Points = D8
-Martial Arts die = D8
-Ki points = 15
-Unarmored Movement bonus = +25 feet
+++ Hit Dice += d8
+== Martial Arts die = d8
+== Ki points = 15
+== Unarmored Movement bonus = +25 feet
 
 ### Timeless Body
 

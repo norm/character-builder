@@ -1,5 +1,5 @@
-Hit Points = D8
-Martial Arts die = D4
+++ Hit Dice += d8
+== Martial Arts die = d4
 
 ### Unarmored Defense
 

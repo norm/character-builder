@@ -20,6 +20,19 @@ Usage:
 ./create.sh 20 cleric/order
 ```
 
+Also provided a simple dice roller:
+
+```
+# roll a d20
+./roll_die.sh d20
+
+# roll a bunch of dice
+./roll_die.sh 4d8 2d6
+
+# default is 1d6
+./roll_die.sh
+```
+
 
 ## Requirements
 
@@ -31,7 +44,35 @@ Usage:
 
 ## Populating a new class
 
-Create `level_01.txt` through `level_20.txt`.
+Create `level_01.txt` through `level_20.txt` that describe new features and
+abilities for that class level. Special markers are used to indicate the
+features understood by the character creator.
+
+Values for abilities that can change across levels are introduced with a
+double equals:
+
+    == Martial Arts die = d8
+    == Pact Magic Slots = 1st level [ ][ ]
+
+Abilities that are added/upgraded are introduced with a double plus:
+
+    ++ Hit Dice += 8
+    ++ Spell Slots
+    ++ Added Oath Spell: Dispel Magic
+
+Values that are added/upgraded but also require a choice from the player are
+introduced with a double asterisk:
+
+    ** Add Cantrips: three Wizard
+    ** Exchange Spell: can replace one Ranger, with another up to 3rd-level
+
+Description of new features should be introduced with a triple hash and the
+title of the feature, and then free text to describe it.
+
+    ### Extra Attack
+
+    You can attack twice instead of once whenever you take the Attack action
+    on your turn.
 
 
 ### Populating subclass
