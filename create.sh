@@ -25,6 +25,15 @@ function slugify {
         | tr A-Z a-z
 }
 
+function error {
+    >&2 echo "** $@"
+}
+
+function error_exit {
+    error "$@"
+    exit 1
+}
+
 function extract_value {
     echo "$@" | sed -e 's/^.* [^ ]*= *//'
 }
@@ -45,8 +54,7 @@ function update_hit_points {
         echo "** Hit Points: rolled $rolled ($hit_die)" \
             > $level_temp/update.hit-points
     else
-        >&2 echo "** Unknown Hit Die type: '$hit_die'"
-        exit 1
+        error_exit "Unknown Hit Die type: '$hit_die'"
     fi
 }
 
@@ -63,8 +71,7 @@ while [[ "${1:-}" =~ ^- ]]; do
                 shift
                 shift
                 ;;
-        *)      >&2 echo "Unknown option: '$1'"
-                exit
+        *)      error_exit "Unknown option: '$1'"
                 ;;
     esac
 done
@@ -84,7 +91,7 @@ while [ -n "${2:-}" ]; do
 
     class_specified[$base_class]=1
     if [ "$base_class" = "$subclass" ]; then
-        >&2 echo "** no subclass specified for class \"${base_class}\""
+        error "no subclass specified for class \"${base_class}\""
     else
         subclass_specified[$full_class]=1
     fi
@@ -121,10 +128,9 @@ while [ -n "${2:-}" ]; do
                     && break
             done
         done
-        if [ $found = 0 ]; then
-            >&2 echo "** class \"$base_class\" level ${class_level[$base_class]} not found"
-            exit 1
-        fi
+
+        [ $found = 0 ] \
+            && error_exit "class \"$base_class\" level ${class_level[$base_class]} not found"
 
         # extract set/updated values
         while read value_set; do
@@ -222,8 +228,7 @@ echo ''
 cat $character_temp/text
 
 for subclass in "${!subclass_specified[@]}"; do
-    if [ -z "${subclass_seen[$subclass]:-}" ]; then
-        >&2 echo "** subclass \"$subclass\" not found"
-        exit 1
-    fi
+    [ -z "${subclass_seen[$subclass]:-}" ] \
+        && error_exit "subclass \"$subclass\" not found"
 done
+exit 0
