@@ -45,3 +45,12 @@ Hit Points += 3
 Cantrips += acid-arrow
 Cantrips += eldritch-blast
 Cantrips += minor-illusion
+
+--- Warlock Level 2
+Hit Points += 4
+
+--- Wizard Level 1
+Hit Points += 5
+
+--- Wizard Level 2
+Hit Points += 4

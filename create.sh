@@ -1,5 +1,6 @@
 #!/usr/bin/env -S bash -euo pipefail
 
+declare character="/dev/null"
 declare -A class_level
 declare -A class_specified
 declare -A hit_dice=( ["d6"]=0 ["d8"]=0 ["d10"]=0 ["d12"]=0 )
@@ -40,24 +41,34 @@ function extract_value {
 
 function update_hit_points {
     local die=6
-    hit_die=$(extract_value "$@")
+    local level="$1"
+    local hit_die=$(extract_value "$2")
 
     [[ "$hit_die" =~ ^[Dd]([1-9][0-9]*)$ ]] \
         && die=${BASH_REMATCH[1]}
 
     if [[ -v hit_dice["d$die"] ]]; then
-        rolled=$(roll_die "$hit_die")
         let hit_dice["d$die"]=hit_dice["$hit_die"]+1
         let hit_points["min"]=hit_points["min"]+1
         let hit_points["max"]=hit_points["max"]+die
-        let hit_points["rolled"]=hit_points["rolled"]+rolled
-        echo "** Hit Points: rolled $rolled ($hit_die)" \
-            > $level_temp/update.hit-points
+
+        local character_points=$( extract_value $(
+            read_character "$character" "$level" "Hit Points"
+        ))
+        if [ -n "$character_points" ]; then
+            let hit_points["rolled"]=hit_points["rolled"]+character_points
+        else
+            rolled=$(roll_die "$hit_die")
+            let hit_points["rolled"]=hit_points["rolled"]+rolled
+            echo "** Hit Points: rolled $rolled ($hit_die)" \
+                > $level_temp/update.hit-points
+        fi
     else
         error_exit "Unknown Hit Die type: '$hit_die'"
     fi
 }
 
+source read_character.sh
 source roll_die.sh
 source spell_slots.sh
 
@@ -67,6 +78,10 @@ trap cleanup EXIT
 
 while [[ "${1:-}" =~ ^- ]]; do
     case "$1" in
+        -c)     character="$2"
+                shift
+                shift
+                ;;
         -s)     sources+=("$2")
                 shift
                 shift
@@ -175,7 +190,9 @@ while [ -n "${2:-}" ]; do
         fi
         rm -f $level_temp/update.spell-slots*
 
-        update_hit_points $(cat $level_temp/update.hit-dice)
+        update_hit_points \
+            "$base_class level $level" \
+            $(cat $level_temp/update.hit-dice)
         rm $level_temp/update.hit-dice
 
         (
